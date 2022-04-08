@@ -5,5 +5,5 @@ A primeira coisa a ser feita é adicionar os arquivos de “clients” e “tran
  
 Vou fazer uma aplicação para processar esses arquivos usando Python, após processar todos os arquivos "clients" e "transaction" no VSCode, vou fazer a conexão no banco de dados inserindo os arquivos em suas devidas tabelas.
  
- Após inserir esses arquivos em suas devidas tabelas no banco de dados relacional, vou analisar esses arquivos para descobrir quais transações são fraldulentas.
+ Após inserir esses arquivos em suas devidas tabelas no banco de dados relacional, vou analisar esses arquivos para descobrir quais transações são fraudulentas.
 As fraudes são as que tiverem transações abaixo de 2 minutos de espaçamento.
