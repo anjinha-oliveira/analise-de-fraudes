@@ -10,20 +10,22 @@ As fraudes são as que tiverem transações abaixo de 2 minutos de espaçamento.
 
 # Para criar o banco de dados:
 
-´´´´sql
+```sql
 Create database Fraudes;
+```
 
 Após criar o banco, execute:
 
-´´´sql
+```sql
 Use Fraudes
 Go
+```
 
 Para executar todos os meus comandos dentro do banco de dados Fraudes.
 
 Para criar as tabelas dentro do banco:
 
-´´´sql
+```sql
 Create table clientes(
     ID int,
     nome varchar(200),
@@ -39,5 +41,6 @@ Create table transacoes(
     data datetime
  
 );
+```
 
 Essas tabelas vão receber os dados dos documentos “clients” e “transactions”
