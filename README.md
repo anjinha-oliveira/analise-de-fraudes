@@ -8,7 +8,9 @@ Vou fazer uma aplicação para processar esses arquivos usando Python, após pro
  Após inserir esses arquivos em suas devidas tabelas no banco de dados relacional, vou analisar esses arquivos para descobrir quais transações são fraudulentas.
 As fraudes são as que tiverem transações abaixo de 2 minutos de espaçamento.
 
-# Para criar o banco de dados:
+# Configuração do banco de dados:
+
+Sintaxe para criar o banco de dados:
 
 ```sql
 Create database Fraudes;
