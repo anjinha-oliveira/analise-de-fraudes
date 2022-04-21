@@ -79,7 +79,7 @@ A saida esperada será
 
 ```py 
 
-$ python importar-dados.py
+$ python importar_dados.py
 clients-001.csv
 clients-002.csv
 clients-003.csv
