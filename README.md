@@ -8,7 +8,7 @@ Vou fazer uma aplicação para processar esses arquivos usando Python, após pro
  Após inserir esses arquivos em suas devidas tabelas no banco de dados relacional, vou analisar esses arquivos para descobrir quais transações são fraudulentas.
 As fraudes são as que tiverem transações abaixo de 2 minutos de espaçamento.
 
-# Configuração do banco de dados:
+# Configuração do banco de dados
 
 Sintaxe para criar o banco de dados:
 
@@ -45,3 +45,44 @@ Create table transacoes(
 ```
 
 Essas tabelas vão receber os dados dos documentos “clients” e “transaction”
+
+# Como executar 
+
+Primeiramente criei um script para listar todos os arquivos de "clients" ultilizando
+a biblioteca "os"
+
+```python
+
+import os
+
+```
+Após importar a biblioteca, adicionei o caminho do diretorio na variavel "pasta"
+
+``` python
+
+pasta = './arquivos-para-analise'
+
+```
+
+Utilizei a função "os.walk()" para varrer todo o caminho do diretorio 
+e delimitei os arquivos que deveriam ser exibidos dentro do meu diretorio com o "if".
+O "sorted()" utilizei para exibir os arquivos de forma ordenada
+
+```python
+
+for diretorio, subpastas, arquivos in os.walk(pasta):
+    for arquivo in sorted(arquivos):
+        if 'clients' in arquivo:
+			print(arquivo)
+```
+A saida esperada será
+
+```py 
+
+$ python importar-dados.py
+clients-001.csv
+clients-002.csv
+clients-003.csv
+clients-004.csv
+
+```
