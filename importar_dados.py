@@ -2,10 +2,8 @@
 import os
 from time import sleep
 import pandas as pd
-import csv
 
-print('Listando dados de clientes:') 
-print('')
+print('Listando dados de clientes:\n') 
 sleep(2)
 pasta = './arquivos-para-analise'
 for diretorio, subpastas, arquivos in os.walk(pasta):
@@ -14,11 +12,7 @@ for diretorio, subpastas, arquivos in os.walk(pasta):
             continue
 
         caminho = f'{pasta}/{arquivo}'
-        df = pd.read_csv(
-            caminho, 
-            encoding= 'LATIN-1', 
-            sep= ';', 
-            )
+        df = pd.read_csv(caminho, encoding= 'LATIN-1', sep= ';')
         for index, row in df.iterrows():
             if 'id' in row:
                 print(f'id = {row.id}')
