@@ -17,4 +17,11 @@ Create table transacoes(
 	data datetime
 
 );
-drop table transacoes
+
+SET IDENTITY_INSERT clientes ON
+
+ALTER TABLE clientes 
+  ALTER COLUMN telefone varchar(50)
+
+select * from clientes
+select count(*) from clientes
