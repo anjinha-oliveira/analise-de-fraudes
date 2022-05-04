@@ -145,7 +145,7 @@ if 'id' in row:
                 print('')
  
 ```
- 
+
 Adicionei o "print" e o "sleep()" na linha de cima da variável "pasta" para exibir o print antes da leitura dos dados no terminal.
  
 ```py
@@ -154,3 +154,69 @@ print('Listando dados de clientes:\n')
 sleep(2)
  
 ```
+
+Para fazer a conexão com o banco de dados, importei a biblioteca pyodbc
+ 
+```py
+ 
+import pyodbc
+ 
+```
+ 
+Atualizei a condição para retornar apenas os dados de cada coluna.
+ 
+```py
+ 
+for index, row in df.iterrows():
+            print(f'id = {row[0]}')
+            print(f'nome = {row[1]}')
+            print(f'email = {row[2]}')
+            print(f'data_cadastro = {row[3]}')
+            print(f'telefone = {row[4]}')        
+            print('')
+ 
+```
+ 
+Armazenei os dados do meu banco na variável "dados_de_conexao"
+ 
+```py
+ 
+dados_de_conexao = (
+                "Driver={SQL Server};"
+                "Server=BRENO-LAPTOP;"
+                "Database=Fraudes;"
+            )
+ 
+```
+ 
+Usei a variável "conexao" para armazenar a minha conexão com o banco e printei para ficar claro que a conexão foi bem sucedida.
+ 
+```py
+ 
+cursor = conexao.cursor()
+print('Conexão bem sucedida')
+ 
+```
+ 
+Adicionei o identity_insert na tabela clientes para inserir o id de cada registro da tabela "clients" e mandei inserir no banco
+ 
+```py
+ 
+id_on = "SET IDENTITY_INSERT clientes ON"
+cursor.execute(id_on)
+print('Conexão id on sucedida')
+ 
+```
+ 
+Agora é só inserir os dados na tabela "clientes" dentro do banco de dados
+ 
+```py
+ 
+sqlserver = f"""INSERT INTO clientes(id, nome, email, data_cadastro, telefone)
+            VALUES('{row[0]}',  '{row[1]}', '{row[2]}', '{row[3].replace(" -0300", "")}', '{row[4]}')"""
+print(sqlserver)
+cursor.execute(sqlserver)
+cursor.commit()
+ 
+```
+ 

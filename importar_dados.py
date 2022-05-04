@@ -3,10 +3,7 @@ import os
 from time import sleep
 import pandas as pd
 
-import email
 import os
-from sqlite3 import Cursor
-from tkinter import INSERT
 
 from numpy import insert
 import pyodbc
@@ -23,9 +20,6 @@ for diretorio, subpastas, arquivos in os.walk(pasta):
         df = pd.read_csv(caminho, encoding= 'LATIN-1', sep= ';')
         
         for index, row in df.iterrows():
-            # if [0] in row:
-            #     print(row[0])
-            #     print(f'id = {row[0]}')
             print(f'id = {row[0]}')
             print(f'nome = {row[1]}')
             print(f'email = {row[2]}')
