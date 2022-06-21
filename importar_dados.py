@@ -39,12 +39,6 @@ for diretorio, subpastas, arquivos in os.walk(pasta):
                     print(f'Ignorando cliente {row[1]}')
                     continue
 
-                print(f'id = {row[0]}')
-                print(f'nome = {row[1]}')
-                print(f'email = {row[2]}')
-                print(f'data_cadastro = {row[3]}')
-                print(f'telefone = {row[4]}')        
-                print('')
                 
                 clientes = f"""INSERT INTO clientes(id, nome, email, data_cadastro, telefone) 
                             VALUES('{row[0]}',  '{row[1]}', '{row[2]}', '{row[3].replace(" -0300", "")}', '{row[4]}')"""
@@ -77,13 +71,6 @@ for diretorio, subpastas, arquivos in os.walk(pasta):
                 if resultado is not None:
                     print(f'Ignorando transacoes {row[0]}')
                     continue
-                
-
-                print(f'id = {row[0]}')
-                print(f'cliente_id = {row[1]}')
-                print(f'valor = {row[2]}')
-                print(f'data = {row[3]}')      
-                print()
 
                 dados_de_conexao = (
                     "Driver={SQL Server};"
@@ -100,7 +87,6 @@ for diretorio, subpastas, arquivos in os.walk(pasta):
 
                 transacoes = f"""INSERT INTO transacoes(id, cliente_id, valor, data) 
                             VALUES('{row[0]}',  '{row[1]}', '{row[2]}', '{row[3].replace(" -0300", "")}')"""
-                print(transacoes)
                 cursor.execute(transacoes)
                 cursor.commit()
-                print(f'id = {row[0]}, inserido com sucesso')
+                print(f'Transação id = {row[0]}, inserido com sucesso')
