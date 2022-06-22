@@ -237,7 +237,7 @@ for diretorio, subpastas, arquivos in os.walk(pasta):
 ```
  
 Faço uma consulta no meu banco para saber se o cliente_id de transações existe na tabela clientes. 
-Caso a variável existe_cliente retornar vazia, o id será ignorado.
+Caso a variável existe_cliente retornar vazia, o id será ignorado
  
 ``` py
  
