@@ -25,3 +25,6 @@ ALTER TABLE clientes
 
 select * from clientes
 select count(*) from clientes
+
+SET IDENTITY_INSERT transacoes ON
+SET IDENTITY_INSERT clientes ON
