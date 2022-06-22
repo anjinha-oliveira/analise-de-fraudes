@@ -220,3 +220,72 @@ cursor.commit()
  
 ```
  
+Após inserir os dados de clients na tabela clientes, atualizei o script para inserir os dados de transaction na tabela de transacoes do meu banco de dados
+ 
+``` py
+ 
+print('\n')
+print('Listando arquivos de transações:\n')
+sleep(2)
+pasta = './arquivos-para-analise'
+for diretorio, subpastas, arquivos in os.walk(pasta):
+    for arquivo in sorted(arquivos):
+        if "transaction-" in arquivo:
+            caminho_transacoes = f'{pasta}/{arquivo}'
+            df = pd.read_csv(caminho_transacoes, encoding= 'LATIN-1', sep= ';')                    
+ 
+```
+ 
+Faço uma consulta no meu banco para saber se o cliente_id de transações existe na tabela clientes. 
+Caso a variável existe_cliente retornar vazia, o id será ignorado.
+ 
+``` py
+ 
+for index, row in df.iterrows():
+    consulta_id = f"select 1 from clientes where id = '{row[1]}'"
+    cursor.execute(consulta_id)
+    existe_cliente = cursor.fetchone()
+    if not existe_cliente:
+        print(f'Ignorando id de transacoes {row[0]}')
+        continue
+ 
+```          
+ 
+Agora eu vou analisar se o id de transacoes já foi cadastrado no banco. 
+Caso ele já esteja cadastrado, vamos ignorar
+ 
+``` py
+ 
+consulta_transacao = f"select 1 from transacoes where id = '{row[0]}'"
+    cursor.execute(consulta_transacao)
+    transacao_ja_cadastrada = cursor.fetchone()
+    if transacao_ja_cadastrada:
+        print(f'Ignorando transacoes {row[0]}')
+        continue
+ 
+```
+ 
+Após fazer essas análises, abro uma nova conexão com o banco de dados
+para inserir os dados dos documentos transaction na tabela de transacoes
+ 
+``` py
+ 
+dados_de_conexao = (
+    "Driver={SQL Server};"
+    "Server=BRENO-LAPTOP;"
+    "Database=Fraudes;"
+)
+ 
+conexao = pyodbc.connect(dados_de_conexao)
+cursor = conexao.cursor()
+id_on = "SET IDENTITY_INSERT transacoes ON"
+cursor.execute(id_on)
+transacoes = f"""INSERT INTO transacoes(id, cliente_id, valor, data)
+            VALUES('{row[0]}',  '{row[1]}', '{row[2]}', '{row[3].replace(" -0300", "")}')"""
+cursor.execute(transacoes)
+cursor.commit()
+print(f'Transação id = {row[0]}, inserido com sucesso')
+ 
+```
+
+

@@ -59,16 +59,16 @@ for diretorio, subpastas, arquivos in os.walk(pasta):
             for index, row in df.iterrows():
                 consulta_id = f"select 1 from clientes where id = '{row[1]}'"
                 cursor.execute(consulta_id)
-                resultado = cursor.fetchone()
-
-                if resultado is None:
+                existe_cliente = cursor.fetchone()
+                if not existe_cliente:
                     print(f'Ignorando id de transacoes {row[0]}')
                     continue
-                
+
                 consulta_transacao = f"select 1 from transacoes where id = '{row[0]}'"
                 cursor.execute(consulta_transacao)
-                resultado = cursor.fetchone()
-                if resultado is not None:
+                transacao_ja_cadastrada = cursor.fetchone()
+                
+                if transacao_ja_cadastrada:
                     print(f'Ignorando transacoes {row[0]}')
                     continue
 
