@@ -90,3 +90,4 @@ for diretorio, subpastas, arquivos in os.walk(pasta):
                 cursor.execute(transacoes)
                 cursor.commit()
                 print(f'Transação id = {row[0]}, inserido com sucesso')
+                

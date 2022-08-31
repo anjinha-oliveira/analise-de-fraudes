@@ -288,4 +288,42 @@ print(f'Transação id = {row[0]}, inserido com sucesso')
  
 ```
 
+A análise proposta do projeto é descobrir clientes que tem transações fraudulentas.
+Essas transações fraudulentas tem um espaçamento entre uma e outra de 2 minutos. 
+
+Depois de pesquisar formas de fazer a análise proposta do projeto, decidi fazer essa consulta no SQL Server
+Para vitar que a consulta retorne dados duplicados, fiz o select de fora usando o distinct no id  da tabela clientes e relacionei as duas tabelas onde "cliente_id" de transacao e "ID" de clientes são iguais 
+
+``` sql
+
+SELECT 
+	distinct cliente_id,
+    clientes.nome,
+    clientes.email,
+    clientes.data_cadastro,
+    clientes.telefone
+FROM transacoes AS t1
+inner join
+    clientes on t1.cliente_id = clientes.ID
+	WHERE t1.id in
+        ...
+```
+
+Na consulta de dentro nomeei transações como "t2" e relacionei a consulta de fora com a de dentro, 
+onde "t1.cliente_id" é igual a "t2.cliente_id" e o ID da consulta de fora é diferente ao ID da consulta de dentro
+Isso garante que o ID da transação não será duplicado.
+
+``` sql
+		(SELECT
+			t1.ID
+		FROM
+			transacoes t2
+		where
+			t1.cliente_id = t2.cliente_id and
+			t1.ID != t2.ID and 
+			DATEDIFF(MINUTE, t1.data, t2.data) < 2 and t2.data < t1.data
+		)
+```        
+
+
 

@@ -1,5 +1,9 @@
 SELECT 
-	distinct cliente_id, clientes.nome, clientes.email, clientes.data_cadastro, clientes.telefone
+	distinct cliente_id, 
+    clientes.nome, 
+    clientes.email, 
+    clientes.data_cadastro, 
+    clientes.telefone
 FROM transacoes AS t1
 inner join clientes
 on t1.cliente_id = clientes.ID
