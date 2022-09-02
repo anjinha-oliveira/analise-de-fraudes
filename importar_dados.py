@@ -2,7 +2,7 @@
 import os
 from time import sleep
 import pandas as pd
-
+import csv
 import os
 
 from numpy import insert
@@ -91,3 +91,33 @@ for diretorio, subpastas, arquivos in os.walk(pasta):
                 cursor.commit()
                 print(f'Transação id = {row[0]}, inserido com sucesso')
                 
+consultando_fraudes = """
+SELECT 
+	distinct cliente_id, clientes.nome, clientes.email, clientes.data_cadastro, clientes.telefone
+FROM transacoes AS t1
+inner join clientes
+on t1.cliente_id = clientes.ID
+	WHERE t1.id in
+		(SELECT
+			t1.ID
+		FROM
+			transacoes t2
+		where
+			t1.cliente_id = t2.cliente_id and
+			t1.ID != t2.ID and 
+			DATEDIFF(MINUTE, t1.data, t2.data) < 2 and t2.data < t1.data
+		)
+"""
+cursor.execute(consultando_fraudes)
+clientes_fraudulentos = cursor.fetchall()
+with open('clientes-fraudulentos.csv', 'w', newline='') as arquivo:
+    writer = csv.writer(arquivo)
+    writer.writerow(["id", "nome", "email",
+                    "data-cadastro", "telefone"])
+
+    for cliente in clientes_fraudulentos:
+        print(cliente.cliente_id, cliente.nome, cliente.email, cliente.data_cadastro, cliente.telefone)
+        writer.writerow([cliente.cliente_id, cliente.nome, cliente.email, cliente.data_cadastro, cliente.telefone])
+
+
+
