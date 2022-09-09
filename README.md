@@ -325,5 +325,59 @@ Isso garante que o ID da transação não será duplicado.
 		)
 ```        
 
+Após descobrir os dados dos clientes que tem transações fraudulentas, criei um arquivo 
+csv chamado "clientes-fraudulentos.csv" para inserir esses dados, após isso uso a
+biblioteca "CSV" para facilitar a importação
+
+Faço a consulta ao banco de dados com a mesma query que usei no SQL Server 
+
+``` py
+
+import csv 
+
+consultando_fraudes = """
+SELECT 
+	distinct cliente_id, clientes.nome, clientes.email, clientes.data_cadastro, clientes.telefone
+FROM transacoes AS t1
+inner join clientes
+on t1.cliente_id = clientes.ID
+	WHERE t1.id in
+		(SELECT
+			t1.ID
+		FROM
+			transacoes t2
+		where
+			t1.cliente_id = t2.cliente_id and
+			t1.ID != t2.ID and 
+			DATEDIFF(MINUTE, t1.data, t2.data) < 2 and t2.data < t1.data
+		)
+"""
+
+```
+
+Ultilizo o fetchall() para pegar esses dados e peço para escrever em csv as colunas do arquivo
+
+``` py
+
+cursor.execute(consultando_fraudes)
+clientes_fraudulentos = cursor.fetchall()
+with open('clientes-fraudulentos.csv', 'w', newline='') as arquivo:
+    writer = csv.writer(arquivo)
+    writer.writerow(["id", "nome", "email",
+                    "data-cadastro", "telefone"])
+
+``` 
+
+Em seguida faço a iteração usando o for em cada campo do arquivo
+
+```py
+
+for cliente in clientes_fraudulentos:
+    print(cliente.cliente_id, cliente.nome, cliente.email, cliente.data_cadastro, cliente.telefone)
+    writer.writerow([cliente.cliente_id, cliente.nome, cliente.email, cliente.data_cadastro, cliente.telefone])
+
+```
+
+
 
 
