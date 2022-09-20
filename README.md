@@ -380,7 +380,7 @@ for cliente in clientes_fraudulentos:
 
 # Páginas Web
 
-Decidi fazer uma página web com as informações dos clientes fraudulentos
+Decidi fazer uma página web com as informações dos clientes fraudulentos.
 Para isso vou usar o Flask para carregar os dados na página, mas antes de começar 
 a ultilizar o framework, fiz uma tabela básica com HTML e CSS e coloquei informações
 de clientes falsos nela
