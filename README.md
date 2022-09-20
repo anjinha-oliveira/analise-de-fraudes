@@ -378,6 +378,159 @@ for cliente in clientes_fraudulentos:
 
 ```
 
+# página Web
 
+Decidi fazer uma página web com as informações dos clientes fraudulentos
+Para isso vou usar o Flask para carregar os dados na página, mas antes de começar 
+a ultilizar o framework, fiz uma tabela básica com HTML e CSS e coloquei informações
+de clientes falsos nela
 
+Adicionei as informações da página "clientes.html" que será a página que vai listar
+todos os clientes fraudulentos e suas principais informações. 
 
+```html
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Document</title>
+        <style>
+            table { 
+                width: 100%;
+                border-collapse: collapse;
+            }
+            tr{
+                text-align:left;
+                border: 1px solid;
+            }
+
+            tr:nth-child(2n) {
+                background: rgb(203, 191, 191);
+            }
+        </style>
+    </head>
+    <body>
+        <h1>
+            Lista de Clientes 
+        </h1>
+        <p>
+        Nessa página, listamos todos os clientes, incluindo fraudulentos ou não.<br>
+        Clique no botão <b>"Ver detalhes"</b> para acessar todas as informações e transações de cada cliente.
+        </p>
+        <table >
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Ações</th>
+              </tr>
+              <tr>
+                <td>Luan Fonseca de farias</td>
+                <td>email@exemplo.com</td>
+                <td>
+                    <a href="transacoes.html">Ver detalhes </a>
+                </td>
+              </tr>
+              <tr>
+                <td>Angela Lucia</td>
+                <td>email@exemplo.com</td>
+                <td>
+                    <a href="https://www.ver detalhes.com/">Ver detalhes </a>
+                </td>
+              </tr>
+              <tr>
+                <td>Sandra de Sá</td>
+                <td>email@exemplo.com</td>
+                <td>
+                    <a href="https://www.ver detalhes.com/">Ver detalhes </a>
+                </td>
+              </tr>
+              <tr>
+                <td>Rita de Cassia</td>
+                <td>email@exemplo.com</td>
+                <td> 
+                    <a href="https://www.ver detalhes.com/">Ver detalhes </a>
+                </td>
+              </tr>
+          </table>
+    </body>
+</html>
+
+```
+
+Adicionei o link "Ver mais" em cada cliente, para que o usuário possa navegar
+para a segunda página onde vai estar as informações do cliente fraudulento como 
+Data e Valor das transações, depois fiz o mesmo para o arquivo "transacoes.html"
+
+``` html
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Document</title>
+        <style>
+            table { 
+                width: 100%;
+                border-collapse: collapse;
+            }
+            tr{
+                text-align:left;
+                border: 1px solid;
+            }
+
+            tr:nth-child(2n) {
+                background: rgb(203, 191, 191);
+            }
+        </style>
+    </head>
+    <body>
+        <a href="clientes.html">Voltar </a>
+        <h1>Cliente: Luan Fonseca de Farias </h1>
+        <p>
+            Nessa página, listamos todos os dados e transações desse cliente.
+            <p>
+                <strong>Nome:</strong> Luan Fonseca de Farias 
+            </p>    
+            <p> 
+                <strong> Email:</strong> email@exemplo.com
+            </p>
+            
+            <p> 
+                <strong>Telefone:</strong>  (99) 9 9999-9999
+            </p>
+        </p>
+        <h1>Lista de transações</h1>
+        <table >
+            <tr>
+                <th>ID</th>
+                <th>Data</th>
+                <th>Valor</th>
+              </tr>
+              <tr>
+                <td>#9999</td>
+                <td>99/99/9999</td>
+                <td><R1>R$99,99</R1></td>
+              </tr>
+              <tr>
+                <td>#9999</td>
+                <td>99/99/9999</td>
+                <td><R1>R$99,99</R1></td>
+              </tr>
+              <tr>
+                <td>#9999</td>
+                <td>99/99/9999</td>
+                <td><R1>R$99,99</R1></td>
+              </tr>
+              <tr>
+                <td>#9999</td>
+                <td>99/99/9999</td>
+                <td><R1>R$99,99</R1></td>
+              </tr>
+          </table>
+    </body>
+</html>
+ 
+```
+
+Nessa página eu adicionei "Voltar" para voltar para a página inicial
