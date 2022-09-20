@@ -10,3 +10,8 @@ def pagina_de_clientes():
 @app.route("/transacoes")
 def pagina_de_transacoes():
     return render_template('transacoes.html')
+
+
+
+if __name__ == '__main__':
+    app.run(debug=True)    
