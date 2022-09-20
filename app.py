@@ -5,7 +5,26 @@ app = Flask(__name__)
 
 @app.route("/")
 def pagina_de_clientes():
-    return render_template('clientes.html')
+    
+    clientes = [
+        {
+            'nome': 'Luan Fonseca de Farias',
+            'email': 'email@exemplo.com'
+        }, 
+        {
+            'nome': 'Angela Lucia',
+            'email': 'email@exemplo.com'
+        }, 
+        {
+            'nome': 'Sandra de Sá',
+            'email': 'email@exemplo.com'
+        }, 
+        {
+            'nome': 'Rita de Cassia',
+            'email': 'rita@exemplo.com'
+        }
+    ]
+    return render_template('clientes.html', clientes=clientes)
 
 @app.route("/transacoes")
 def pagina_de_transacoes():
