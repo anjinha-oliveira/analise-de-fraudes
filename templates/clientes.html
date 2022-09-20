@@ -26,46 +26,21 @@
         Nessa página, listamos todos os clientes, incluindo fraudulentos ou não.<br>
         Clique no botão <b>"Ver detalhes"</b> para acessar todas as informações e transações de cada cliente.
         </p>
-        {% for cliente in clientes %}
-            Nome: {{ cliente.nome }}
-            <br/>
-            Email: {{ cliente.email }}
-            <br/><br/>
-        {% endfor %}
         <table >
             <tr>
                 <th>Nome</th>
                 <th>Email</th>
                 <th>Ações</th>
               </tr>
+            {% for cliente in clientes %}
               <tr>
-                <td>Luan Fonseca de farias</td>
-                <td>email@exemplo.com</td>
+                <td>{{ cliente.nome }}</td>
+                <td>{{cliente.email}}</td>
                 <td>
                     <a href="/transacoes">Ver detalhes </a>
                 </td>
               </tr>
-              <tr>
-                <td>Angela Lucia</td>
-                <td>email@exemplo.com</td>
-                <td>
-                    <a href="/transacoes">Ver detalhes </a>
-                </td>
-              </tr>
-              <tr>
-                <td>Sandra de Sá</td>
-                <td>email@exemplo.com</td>
-                <td>
-                    <a href="/transacoes">Ver detalhes </a>
-                </td>
-              </tr>
-              <tr>
-                <td>Rita de Cassia</td>
-                <td>email@exemplo.com</td>
-                <td> 
-                    <a href="/transacoes">Ver detalhes </a>
-                </td>
-              </tr>
+            {% endfor %}    
           </table>
     </body>
 </html>
