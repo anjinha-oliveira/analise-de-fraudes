@@ -28,7 +28,37 @@ def pagina_de_clientes():
 
 @app.route("/transacoes")
 def pagina_de_transacoes():
-    return render_template('transacoes.html')
+    cliente = {
+        "nome": "Luan Fonsceca de Farias",
+        "email": " email@exemplo.com",
+        "telefone": " (99) 9 9999-9999"
+    }
+
+    transacoes= [
+        {
+            'id': '#9999',
+            'data': '99/99/9999',
+            'valor': 'R$99,99'
+
+        }, 
+        {
+            'id': '#9999',
+            'data': '99/99/9999',
+            'valor': 'R$99,99'
+
+        }, 
+        {
+            'id': '#9999',
+            'data': '99/99/9999',
+            'valor': 'R$99,99'
+        }, 
+        {
+            'id': '#9999',
+            'data': '99/99/9999',
+            'valor': 'R$99,99'
+        }
+]
+    return render_template('transacoes.html', cliente=cliente, transacoes= transacoes)
 
 
 

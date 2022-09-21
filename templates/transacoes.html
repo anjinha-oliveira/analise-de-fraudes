@@ -20,47 +20,34 @@
     </head>
     <body>
         <a href="/">Voltar </a>
-        <h1>Cliente: Luan Fonseca de Farias </h1>
+        <h1>Cliente: {{ cliente.nome }} </h1>
         <p>
             Nessa página, listamos todos os dados e transações desse cliente.
             <p>
-                <strong>Nome:</strong> Luan Fonseca de Farias 
+                <strong>Nome:</strong> {{ cliente.nome }}
             </p>    
             <p> 
-                <strong> Email:</strong> email@exemplo.com
+                <strong> Email:</strong> {{ cliente.email }}
             </p>
             
             <p> 
-                <strong>Telefone:</strong>  (99) 9 9999-9999
+                <strong>Telefone:</strong> {{ cliente.telefone }}
             </p>
         </p>
         <h1>Lista de transações</h1>
         <table >
-            <tr>
-                <th>ID</th>
-                <th>Data</th>
-                <th>Valor</th>
-              </tr>
-              <tr>
-                <td>#9999</td>
-                <td>99/99/9999</td>
-                <td><R1>R$99,99</R1></td>
-              </tr>
-              <tr>
-                <td>#9999</td>
-                <td>99/99/9999</td>
-                <td><R1>R$99,99</R1></td>
-              </tr>
-              <tr>
-                <td>#9999</td>
-                <td>99/99/9999</td>
-                <td><R1>R$99,99</R1></td>
-              </tr>
-              <tr>
-                <td>#9999</td>
-                <td>99/99/9999</td>
-                <td><R1>R$99,99</R1></td>
-              </tr>
+                <tr>
+                    <th>ID</th>
+                    <th>Data</th>
+                    <th>Valor</th>
+                </tr>
+            {% for transacao in transacoes %}    
+                <tr>
+                    <td>{{transacao.id}}</td>
+                    <td>{{transacao.data}}</td>
+                    <td><R1>{{transacao.valor}}</R1></td>
+                </tr>
+            {% endfor %}
           </table>
     </body>
 </html>
