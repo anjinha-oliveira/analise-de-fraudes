@@ -110,6 +110,7 @@ on t1.cliente_id = clientes.ID
 """
 cursor.execute(consultando_fraudes)
 clientes_fraudulentos = cursor.fetchall()
+
 with open('clientes-fraudulentos.csv', 'w', newline='') as arquivo:
     writer = csv.writer(arquivo)
     writer.writerow(["id", "nome", "email",

@@ -1,30 +1,40 @@
 from flask import Flask
 from flask import render_template
+import pyodbc
 
 app = Flask(__name__)
 
+dados_de_conexao = (
+                    "Driver={SQL Server};"
+                    "Server=BRENO-LAPTOP;"
+                    "Database=Fraudes;"
+                    )
+conexao = pyodbc.connect(dados_de_conexao)
+cursor = conexao.cursor()
+
 @app.route("/")
 def pagina_de_clientes():
-    
-    clientes = [
-        {
-            'nome': 'Luan Fonseca de Farias',
-            'email': 'email@exemplo.com'
-        }, 
-        {
-            'nome': 'Angela Lucia',
-            'email': 'email@exemplo.com'
-        }, 
-        {
-            'nome': 'Sandra de Sá',
-            'email': 'email@exemplo.com'
-        }, 
-        {
-            'nome': 'Rita de Cassia',
-            'email': 'rita@exemplo.com'
-        }
-    ]
+    query_clientes_fraudulentos = """
+        SELECT 
+            distinct clientes.nome, clientes.email
+        FROM transacoes AS t1
+        inner join clientes
+        on t1.cliente_id = clientes.ID
+            WHERE t1.id in
+                (SELECT
+                    t1.ID
+                FROM
+                    transacoes t2
+                where
+                    t1.cliente_id = t2.cliente_id and
+                    t1.ID != t2.ID and 
+                    DATEDIFF(MINUTE, t1.data, t2.data) < 2 and t2.data < t1.data
+                )
+    """
+    cursor.execute(query_clientes_fraudulentos)
+    clientes = cursor.fetchall()
     return render_template('clientes.html', clientes=clientes)
+
 
 @app.route("/transacoes")
 def pagina_de_transacoes():
