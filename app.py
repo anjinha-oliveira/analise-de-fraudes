@@ -42,35 +42,17 @@ def pagina_de_transacoes(cliente_id):
     query_dados_cliente = f"""
         select nome, email, telefone from clientes where id = {cliente_id}
     """
+    
     cursor.execute(query_dados_cliente)
     cliente = cursor.fetchone()
-    transacoes= [
-        {
-            'id': '#9999',
-            'data': '99/99/9999',
-            'valor': 'R$99,99'
 
-        }, 
-        {
-            'id': '#9999',
-            'data': '99/99/9999',
-            'valor': 'R$99,99'
+    query_dados_transacao = f"""
+        select ID, data, valor from transacoes where cliente_id = {cliente_id} 
+    """
+    cursor.execute(query_dados_transacao)
+    transacoes = cursor.fetchall()
 
-        }, 
-        {
-            'id': '#9999',
-            'data': '99/99/9999',
-            'valor': 'R$99,99'
-        }, 
-        {
-            'id': '#9999',
-            'data': '99/99/9999',
-            'valor': 'R$99,99'
-        }
-]
     return render_template('transacoes.html', cliente=cliente, transacoes= transacoes)
-
-
 
 if __name__ == '__main__':
     app.run(debug=True)    
