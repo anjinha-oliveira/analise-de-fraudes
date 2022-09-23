@@ -28,16 +28,18 @@
         </p>
         <table >
             <tr>
+                <th>ID</th>
                 <th>Nome</th>
                 <th>Email</th>
                 <th>Ações</th>
               </tr>
             {% for cliente in clientes %}
               <tr>
-                <td>{{ cliente.nome }}</td>
+                <td>{{cliente.id}}</td>
+                <td>{{cliente.nome}}</td>
                 <td>{{cliente.email}}</td>
                 <td>
-                    <a href="/transacoes">Ver detalhes </a>
+                    <a href="/transacoes/{{cliente.id}}">Ver detalhes </a>
                 </td>
               </tr>
             {% endfor %}    

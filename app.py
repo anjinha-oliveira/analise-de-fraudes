@@ -16,7 +16,7 @@ cursor = conexao.cursor()
 def pagina_de_clientes():
     query_clientes_fraudulentos = """
         SELECT 
-            distinct clientes.nome, clientes.email
+            distinct cliente_id AS id, clientes.nome, clientes.email
         FROM transacoes AS t1
         inner join clientes
         on t1.cliente_id = clientes.ID
@@ -33,11 +33,12 @@ def pagina_de_clientes():
     """
     cursor.execute(query_clientes_fraudulentos)
     clientes = cursor.fetchall()
+    print(clientes)
     return render_template('clientes.html', clientes=clientes)
 
 
-@app.route("/transacoes")
-def pagina_de_transacoes():
+@app.route("/transacoes/<cliente_id>")
+def pagina_de_transacoes(cliente_id):
     cliente = {
         "nome": "Luan Fonsceca de Farias",
         "email": " email@exemplo.com",
