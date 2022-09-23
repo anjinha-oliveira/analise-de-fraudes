@@ -43,9 +43,9 @@
                 </tr>
             {% for transacao in transacoes %}    
                 <tr>
-                    <td>{{transacao.ID}}</td>
+                    <td>#{{transacao.ID}}</td>
                     <td>{{transacao.data}}</td>
-                    <td><R1>{{transacao.valor}}</R1></td>
+                    <td><R1>R${{transacao.valor}}</R1></td>
                 </tr>
             {% endfor %}
           </table>

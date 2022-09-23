@@ -47,7 +47,7 @@ def pagina_de_transacoes(cliente_id):
     cliente = cursor.fetchone()
 
     query_dados_transacao = f"""
-        select ID, data, valor from transacoes where cliente_id = {cliente_id} 
+        select ID, FORMAT(data, 'dd/MM/yyyy') AS data, FORMAT(valor, 'N') AS valor from transacoes where cliente_id = {cliente_id}      
     """
     cursor.execute(query_dados_transacao)
     transacoes = cursor.fetchall()
