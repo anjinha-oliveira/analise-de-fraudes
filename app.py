@@ -39,12 +39,11 @@ def pagina_de_clientes():
 
 @app.route("/transacoes/<cliente_id>")
 def pagina_de_transacoes(cliente_id):
-    cliente = {
-        "nome": "Luan Fonsceca de Farias",
-        "email": " email@exemplo.com",
-        "telefone": " (99) 9 9999-9999"
-    }
-
+    query_dados_cliente = f"""
+        select nome, email, telefone from clientes where id = {cliente_id}
+    """
+    cursor.execute(query_dados_cliente)
+    cliente = cursor.fetchone()
     transacoes= [
         {
             'id': '#9999',
