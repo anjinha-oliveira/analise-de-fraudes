@@ -30,6 +30,26 @@ Data e Valor das transações, depois fiz o mesmo para o arquivo "transacoes.htm
 Nessa página eu adicionei "Voltar" para voltar para a página inicial.
 
  
+ # Páginas Web
+
+Decidi fazer uma página web com as informações dos clientes fraudulentos.
+Para isso vou usar o Flask para carregar os dados na página, mas antes de começar 
+a ultilizar o framework, fiz uma tabela básica com HTML e CSS e coloquei informações
+de clientes falsos nela
+
+Adicionei as informações da página "clientes.html" que será a página que vai listar
+todos os clientes fraudulentos e suas principais informações. 
+
+![Pagina de Clientes](imagens/pagina-de-clientes.png)
+
+Adicionei o link "Ver mais" em cada cliente, para que o usuário possa navegar
+para a segunda página onde vai estar as informações do cliente fraudulento como 
+Data e Valor das transações, depois fiz o mesmo para o arquivo "transacoes.html"
+
+![Pagina de Clientes](imagens/pagina-de-transacoes.png)
+
+Nessa página eu adicionei "Voltar" para voltar para a página inicial
+
 # Configuração do banco de dados
  
 Sintaxe para criar o banco de dados:
@@ -399,22 +419,3 @@ for cliente in clientes_fraudulentos:
 
 ```
 
-# Páginas Web
-
-Decidi fazer uma página web com as informações dos clientes fraudulentos.
-Para isso vou usar o Flask para carregar os dados na página, mas antes de começar 
-a ultilizar o framework, fiz uma tabela básica com HTML e CSS e coloquei informações
-de clientes falsos nela
-
-Adicionei as informações da página "clientes.html" que será a página que vai listar
-todos os clientes fraudulentos e suas principais informações. 
-
-![Pagina de Clientes](imagens/pagina-de-clientes.png)
-
-Adicionei o link "Ver mais" em cada cliente, para que o usuário possa navegar
-para a segunda página onde vai estar as informações do cliente fraudulento como 
-Data e Valor das transações, depois fiz o mesmo para o arquivo "transacoes.html"
-
-![Pagina de Clientes](imagens/pagina-de-transacoes.png)
-
-Nessa página eu adicionei "Voltar" para voltar para a página inicial
